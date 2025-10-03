@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import Navbar from "../Components/Common/Navbar"
 import { motion, AnimatePresence, easeInOut } from "framer-motion"
+import Login from "./Auth/Login";
 const LandingPage = () => {
   const [CurrentName, setCurrentName] = useState(0);
 
@@ -21,8 +22,13 @@ const LandingPage = () => {
         <Navbar />
       </header>
 
+      {/* Login window */}
+      <div className="absolute flex justify-center items-center w-full h-[93.5%]">
+        <Login />
+      </div>
+
       {/* Hero section */}
-      <main className="px-4">
+      <main className="px-4 relative">
         <section className="h-[93.5vh] p-20 flex gap-2 relative">
           <img src="./scribble.png" alt="scribble" className="absolute h-40 w-40 top-10" />
           <div className="px-8 py-35 w-[50%]">
@@ -48,10 +54,24 @@ const LandingPage = () => {
             </div>
             <div className="flex mt-10 ml-5 gap-5">
               <button className="border-2 px-10 py-2 rounded-xl border-gray-300 bg-amber-300">Get Started</button>
-              <button className="border-2 px-10 py-2 rounded-xl border-gray-300">Learn More</button>
+              <motion.button
+                className="relative overflow-hidden border-2 px-10 py-2 rounded-xl border-gray-300"
+                whileHover="hover"
+              >
+                <motion.span
+                  className="absolute inset-0 bg-amber-300"
+                  initial={{ x: "-100%" }}
+                  variants={{
+                    hover: { x: "0%" }
+                  }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                >
+                </motion.span>
+                <span className="relative z-10 ">Learn More</span>
+              </motion.button>
             </div>
           </div>
-
+          {/* hero section image */}
           <div className="w-[50%] flex justify-center items-center">
             <div className="h-full w-full flex justify-center items-center">
               <img src="./hero2.png" alt="CoDraw" className="bg-cover" />
